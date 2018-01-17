@@ -1,0 +1,19 @@
+mp-header {
+  header {
+    .navbar-brand {
+      padding: 6px 15px;
+      img {
+        max-height: 40px;
+      }
+    }
+    .navbar-default {
+      .navbar-nav {
+        li {
+          a.active, a:focus, a:active {
+            background-color: $gray-lighter;
+          }
+        }
+      }
+    }
+  }
+}

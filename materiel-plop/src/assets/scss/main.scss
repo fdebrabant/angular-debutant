@@ -1,0 +1,12 @@
+// Main theme file
+// import variables first to allow override on bootstrap variables
+@import "variables";
+
+$icon-font-path: "../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+@import "globals";
+@import "mixins";
+
+@import "layout/header";
+@import "layout/footer";
