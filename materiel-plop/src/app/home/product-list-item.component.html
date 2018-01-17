@@ -1,11 +1,11 @@
 <div class="product">
   <div class="thumbnail">
-    <img src="/assets/images/surface-book.jpg">
+    <img [src]="'/assets/images/' + product.image">
     <div class="caption">
-      <h4><a href="#">Surface Book</a><strong class="pull-right">1401 €</strong></h4>
+      <h4><a href="#">{{product.title}}</a><strong class="pull-right">{{product.price}} €</strong></h4>
     </div>
     <div class="ratings">
-      <p class="pull-right">10 reviews</p>
+      <p class="pull-right">{{product.review}} reviews</p>
       <p><span class="glyphicon glyphicon-star"></span></p>
     </div>
   </div>
