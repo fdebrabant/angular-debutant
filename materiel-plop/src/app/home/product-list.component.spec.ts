@@ -12,6 +12,7 @@ describe('ProductListComponent (With dependency)', () => {
       declarations: [ProductListComponent, ProductListItemComponent]
     });
     fixture = TestBed.createComponent(ProductListComponent);
+    fixture.detectChanges();
   });
 
   it('should display 3 items', () => {
@@ -28,6 +29,7 @@ describe('ProductListComponent (Shallow component tests)', () => {
       schemas: [NO_ERRORS_SCHEMA]
     });
     fixture = TestBed.createComponent(ProductListComponent);
+    fixture.detectChanges();
   });
 
   it('should display 3 items', () => {
@@ -48,6 +50,7 @@ describe('ProductListComponent (With component stub)', () => {
       declarations: [ProductListComponent, ProductListItemStubComponent]
     });
     fixture = TestBed.createComponent(ProductListComponent);
+    fixture.detectChanges();
   });
 
   it('should display 3 items', () => {
