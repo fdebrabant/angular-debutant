@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {User, GENDER_LIST, COUNTRY_LIST, Gender, Country} from './user.model';
+import {NgForm} from '@angular/forms';
+import {User, GENDER_LIST, COUNTRY_LIST, Gender, AddressDelivery, Country} from './user.model';
 
 @Component({
   selector: 'mp-account-create',
@@ -10,6 +11,7 @@ export class AccountCreateComponent implements OnInit {
   user: User;
   genderList: Array<Gender> = GENDER_LIST;
   countryList: Array<Country> = COUNTRY_LIST;
+  @ViewChild('myForm') ngForm: NgForm;
 
   constructor(public router: Router) {}
 
@@ -20,5 +22,32 @@ export class AccountCreateComponent implements OnInit {
   initUser(): void {
     this.user = new User();
     this.user.gender = 'Mr';
+  }
+
+  save(): void {
+    if (this.ngForm.valid) {
+      console.log('Saving user');
+      this.router.navigate(['/account']);
+    }
+  }
+
+  addDeliveryAddress(): void {
+    this.user.addressesDelivery.push(new AddressDelivery());
+  }
+
+  removeDeliveryAddress(index: number): void {
+    this.user.addressesDelivery.splice(index, 1);
+  }
+
+  setDefaultDeliveryAddress(selectedIndex: number): void {
+    this.user.addressesDelivery.forEach((address: AddressDelivery, index: number) => {
+      if (index !== selectedIndex) {
+        address.isDefault = false;
+      }
+    });
+  }
+
+  get debug(): string {
+    return JSON.stringify(this.user);
   }
 }

@@ -1,1 +1,106 @@
 <h1>Créer un compte</h1>
+
+<form #myForm="ngForm" (ngSubmit)="save()">
+  <pre>{{debug}}</pre>
+  <div class="form-group">
+    <label>Civilité</label>
+    <div>
+      <label class="radio-inline" *ngFor="let gender of genderList">
+        <input type="radio" name="gender" [(ngModel)]="user.gender" [value]="gender" required> {{gender}}
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Prénom</label>
+    <input type="text" name="firstName" #firstName="ngModel" class="form-control" [(ngModel)]="user.firstName" required>
+    <p class="alert alert-danger" *ngIf="firstName.invalid && firstName.touched">Ce champ est requis</p>
+  </div>
+  <div class="form-group">
+    <label>Nom</label>
+    <input type="text" name="lastName" #lastName="ngModel" class="form-control" [(ngModel)]="user.lastName" required>
+    <p class="alert alert-danger" *ngIf="lastName.invalid && lastName.touched">Ce champ est requis</p>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" name="email" #email="ngModel" class="form-control" [(ngModel)]="user.email" email required>
+    <p class="alert alert-danger" *ngIf="email.errors?.required && email.touched">Ce champ est requis</p>
+    <p class="alert alert-danger" *ngIf="email.errors?.email && email.touched">Ceci n'est pas une email valide</p>
+  </div>
+
+  <fieldset ngModelGroup="addressInvoice">
+    <legend>Adresse de facturation</legend>
+    <div class="form-group">
+      <label>Rue</label>
+      <input type="text" name="street" #street="ngModel" class="form-control" [(ngModel)]="user.addressInvoice.street" required>
+      <p class="alert alert-danger" *ngIf="street.invalid && street.touched">Ce champ est requis</p>
+    </div>
+    <div class="form-group">
+      <label>Code postal</label>
+      <input type="text" name="zipCode" #zipCode="ngModel" class="form-control" [(ngModel)]="user.addressInvoice.zipCode" required>
+      <p class="alert alert-danger" *ngIf="zipCode.invalid && zipCode.touched">Ce champ est requis</p>
+    </div>
+    <div class="form-group">
+      <label>Ville</label>
+      <input type="text" name="city" #city="ngModel" class="form-control" [(ngModel)]="user.addressInvoice.city" required>
+      <p class="alert alert-danger" *ngIf="city.invalid && city.touched">Ce champ est requis</p>
+    </div>
+    <div class="form-group">
+      <label>Pays</label>
+      <select name="country" #country="ngModel" class="form-control" [(ngModel)]="user.addressInvoice.country">
+        <option *ngFor="let country of countryList" [value]="country.code">{{country.label}}</option>
+      </select>
+      <p class="alert alert-danger" *ngIf="country.invalid && country.touched">Ce champ est requis</p>
+    </div>
+  </fieldset>
+
+  <h2>Adresses de livraison</h2>
+
+  <div ngModelGroup="addressesDelivery" #addressesDelivery="ngModelGroup">
+    <fieldset *ngFor="let addressesDelivery of user.addressesDelivery;let addressNumber = index"
+              [ngModelGroup]="'addressDelivery' + (addressNumber)">
+      <legend>Adresses de livraison {{addressNumber + 1}}</legend>
+      <div class="form-group">
+        <label>Rue</label>
+        <input type="text" name="street" #street="ngModel" class="form-control" [(ngModel)]="user.addressesDelivery[addressNumber].street" required>
+        <p class="alert alert-danger" *ngIf="street.invalid && street.touched">Ce champ est requis</p>
+      </div>
+      <div class="form-group">
+        <label>Code postal</label>
+        <input type="text" name="zipCode" #zipCode="ngModel" class="form-control" [(ngModel)]="user.addressesDelivery[addressNumber].zipCode" required>
+        <p class="alert alert-danger" *ngIf="zipCode.invalid && zipCode.touched">Ce champ est requis</p>
+      </div>
+      <div class="form-group">
+        <label>Ville</label>
+        <input type="text" name="city" #city="ngModel" class="form-control" [(ngModel)]="user.addressesDelivery[addressNumber].city" required>
+        <p class="alert alert-danger" *ngIf="city.invalid && city.touched">Ce champ est requis</p>
+      </div>
+      <div class="form-group">
+        <label>Pays</label>
+        <select name="country" #country="ngModel" class="form-control" [(ngModel)]="user.addressesDelivery[addressNumber].country">
+          <option *ngFor="let country of countryList" [value]="country.code">{{country.label}}</option>
+        </select>
+        <p class="alert alert-danger" *ngIf="country.invalid && country.touched">Ce champ est requis</p>
+      </div>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="default" (click)="setDefaultDeliveryAddress(addressNumber)"
+               [(ngModel)]="user.addressesDelivery[addressNumber].isDefault" [value]="true">
+        Adresse par défaut ?
+      </label>
+      <a class="pull-right btn btn-danger" (click)="removeDeliveryAddress(addressNumber)">Supprimer</a>
+    </fieldset>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button (click)="addDeliveryAddress()" class="pull-right btn btn-success"
+              [disabled]="addressesDelivery.invalid && user.addressesDelivery.length > 0">
+        <i class="glyphicon glyphicon-plus"></i>Ajouter une adresse
+      </button>
+    </div>
+  </div>
+
+  <hr />
+
+  <input type="submit" class="btn btn-primary" [disabled]="myForm.invalid">
+</form>
