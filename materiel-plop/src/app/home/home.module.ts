@@ -4,20 +4,18 @@ import {CommonModule} from '@angular/common';
 import {HomeRoutingModule} from './home-routing.module';
 import {HomeComponent} from './home.component';
 import {MenuService, MenuItem} from '../layout/menu/menu.service';
-import {ProductListComponent} from './product-list.component';
-import {ProductListItemComponent} from './product-list-item.component';
 import {SharedModule} from '../shared/shared.module';
+import {ProductListModule} from '../catalog/product-list/product-list.module';
 
 @NgModule({
   imports: [
     HomeRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    ProductListModule
   ],
   declarations: [
-    HomeComponent,
-    ProductListComponent,
-    ProductListItemComponent
+    HomeComponent
   ]
 })
 export class HomeModule {

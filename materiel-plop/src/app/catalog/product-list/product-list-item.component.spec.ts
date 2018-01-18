@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {ProductListItemComponent} from './product-list-item.component';
 import {By} from '@angular/platform-browser';
-import {Product} from './product.model';
+import {Product} from '../product.model';
 
 describe('ProductListItemComponent', () => {
 

@@ -1,13 +1,9 @@
 import {Injectable} from '@angular/core';
 
 export class MenuItem {
-  label: string;
-  url: string;
   subItems: MenuItem[] = [];
 
-  constructor(label: string, url: string) {
-    this.label = label;
-    this.url = url;
+  constructor(public label: string, public url: string, public weight: number = 0) {
   }
 
   addSubItem(subItem: MenuItem): void {
@@ -28,6 +24,6 @@ export class MenuService {
   }
 
   getItems(): MenuItem[] {
-    return this.items;
+    return this.items.sort((a: MenuItem, b: MenuItem): number => a.weight - b.weight);
   }
 }
