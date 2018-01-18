@@ -6,5 +6,8 @@ import {Product} from './product.model';
   templateUrl: 'product-list-item.component.html'
 })
 export class ProductListItemComponent {
+
+  imageBasePath = '/assets/images/';
+
   @Input() product: Product;
 }
