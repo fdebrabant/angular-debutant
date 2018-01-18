@@ -7,6 +7,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {LayoutModule} from './layout/layout.module';
 import {HomeModule} from './home/home.module';
 import {CatalogModule} from './catalog/catalog.module';
+import {AccountModule} from './account/account.module';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import {CatalogModule} from './catalog/catalog.module';
     AppRoutingModule,
     HomeModule,
     CatalogModule,
+    AccountModule,
     LayoutModule
   ],
   declarations: [AppComponent],
