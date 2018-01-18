@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {User, GENDER_LIST, COUNTRY_LIST, Gender, AddressDelivery, Country} from './user.model';
+import {UserService} from './user.service';
 
 @Component({
   selector: 'mp-account-create',
@@ -13,7 +14,7 @@ export class AccountCreateComponent implements OnInit {
   countryList: Array<Country> = COUNTRY_LIST;
   @ViewChild('myForm') ngForm: NgForm;
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.initUser();
@@ -26,8 +27,9 @@ export class AccountCreateComponent implements OnInit {
 
   save(): void {
     if (this.ngForm.valid) {
-      console.log('Saving user');
-      this.router.navigate(['/account']);
+      this.userService
+        .create(this.user)
+        .then(() => this.router.navigate(['/account']));
     }
   }
 

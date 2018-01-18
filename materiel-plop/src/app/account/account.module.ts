@@ -6,6 +6,7 @@ import {MenuService, MenuItem} from '../layout/menu/menu.service';
 import {AccountRoutingModule} from './account-routing.module';
 import {AccountCreateComponent} from './account-create.component';
 import {AccountComponent} from './account.component';
+import {UserService} from './user.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,9 @@ import {AccountComponent} from './account.component';
   declarations: [
     AccountCreateComponent,
     AccountComponent
+  ],
+  providers: [
+    UserService
   ]
 })
 export class AccountModule {
