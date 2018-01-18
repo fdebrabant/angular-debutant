@@ -6,6 +6,7 @@ import {CatalogComponent} from './catalog.component';
 import {ProductListModule} from './product-list/product-list.module';
 import {MenuItem, MenuService} from '../layout/menu/menu.service';
 import {ProductService} from './product.service';
+import {ProductDetailComponent} from './product-detail/product-detail.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import {ProductService} from './product.service';
     ProductListModule
   ],
   declarations: [
-    CatalogComponent
+    CatalogComponent,
+    ProductDetailComponent
   ],
   providers: [
     ProductService

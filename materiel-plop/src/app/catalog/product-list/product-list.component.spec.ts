@@ -4,11 +4,12 @@ import {ProductListComponent} from './product-list.component';
 import {ProductListItemComponent} from './product-list-item.component';
 import {By} from '@angular/platform-browser';
 import {Product} from '../product.model';
+import {RouterTestingModule} from '@angular/router/testing';
 
 const productList: Array<Product> = [
-  {title: 'Test product', price: 100, image: 'product.jpg', review: 20, rating: 2},
-  {title: 'Test product 2', price: 200, image: 'product2.jpg', review: 40, rating: 4},
-  {title: 'Test product 3', price: 400, image: 'product3.jpg', review: 60, rating: 5}
+  {id: 1, title: 'Test product', price: 100, image: 'product.jpg', review: 20, rating: 2},
+  {id: 2, title: 'Test product 2', price: 200, image: 'product2.jpg', review: 40, rating: 4},
+  {id: 3, title: 'Test product 3', price: 400, image: 'product3.jpg', review: 60, rating: 5}
 ];
 
 describe('ProductListComponent (With dependency)', () => {
@@ -16,6 +17,7 @@ describe('ProductListComponent (With dependency)', () => {
   let fixture: ComponentFixture<ProductListComponent>;
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [ProductListComponent, ProductListItemComponent]
     });
     fixture = TestBed.createComponent(ProductListComponent);

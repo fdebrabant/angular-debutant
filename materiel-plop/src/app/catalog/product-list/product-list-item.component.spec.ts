@@ -2,13 +2,17 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {ProductListItemComponent} from './product-list-item.component';
 import {By} from '@angular/platform-browser';
 import {Product} from '../product.model';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('ProductListItemComponent', () => {
 
-  const productSample: Product = {title: 'Test product', price: 100, image: 'product.jpg', review: 20, rating: 2};
+  const productSample: Product = {
+    id: 1, title: 'Test product', price: 100, image: 'product.jpg', review: 20, rating: 2
+  };
   let fixture: ComponentFixture<ProductListItemComponent>;
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [ProductListItemComponent]
     });
     fixture = TestBed.createComponent(ProductListItemComponent);

@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-sm-12">
+    <a routerLink="/catalog" class="pull-right">Retour au catalogue</a>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="media">
+      <div class="media-left">
+        <img [src]="'../../assets/images/' + product.image">
+      </div>
+      <div class="media-body">
+        <h2 class="media-heading">
+          {{product.title | titlecase}}
+          <span class="pull-right"><i *ngFor="let rate of rateRange(product.rating)" class="glyphicon glyphicon-star"></i></span>
+        </h2>
+        <h3><strong>{{product.price|currency:'EUR':true}}</strong></h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempus imperdiet mi nec fermentum.
+          Nunc sed mauris vitae neque efficitur luctus sed eu ex. In maximus odio elit, quis bibendum est gravida nec.
+          Mauris vehicula nec lorem ac porttitor. Etiam odio risus, pretium eu enim nec, mollis egestas purus.
+          Nullam pretium luctus venenatis. Nulla molestie sem vel diam scelerisque posuere. Sed turpis nunc, ornare non dictum ac, volutpat et mi.
+          Aliquam dictum volutpat nisl at tempor. Nam efficitur ullamcorper arcu id scelerisque. Vestibulum efficitur pretium arcu, ac efficitur neque.
+          Pellentesque eget eros ultricies, aliquet dui sed, aliquam justo. Duis dignissim neque a rutrum consectetur. Proin commodo tempor volutpat.
+        </p>
+        <a class="btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> Ajouter au panier</a>
+      </div>
+    </div>
+  </div>
+</div>
