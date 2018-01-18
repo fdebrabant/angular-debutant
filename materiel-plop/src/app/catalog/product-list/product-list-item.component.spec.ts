@@ -5,7 +5,7 @@ import {Product} from '../product.model';
 
 describe('ProductListItemComponent', () => {
 
-  const productSample: Product = {title: 'Test product', price: 100, image: 'product.jpg', review: 20};
+  const productSample: Product = {title: 'Test product', price: 100, image: 'product.jpg', review: 20, rating: 2};
   let fixture: ComponentFixture<ProductListItemComponent>;
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -34,5 +34,9 @@ describe('ProductListItemComponent', () => {
   it('should display product image', () => {
     expect(fixture.debugElement.query(By.css('img')).nativeElement.src)
       .toEqual(document.location.origin + '/assets/images/' + fixture.componentInstance.product.image);
+  });
+
+  it('should display right number of stars', () => {
+    expect(fixture.debugElement.queryAll(By.css('.glyphicon-star')).length).toEqual(2);
   });
 });

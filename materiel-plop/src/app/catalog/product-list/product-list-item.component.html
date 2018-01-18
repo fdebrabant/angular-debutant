@@ -6,7 +6,7 @@
     </div>
     <div class="ratings">
       <p class="pull-right" mpHighlighter="yellow">{{product.review}} reviews</p>
-      <p><span class="glyphicon glyphicon-star"></span></p>
+      <p><span *ngFor="let rate of rateRange(product.rating)" class="glyphicon glyphicon-star"></span></p>
     </div>
   </div>
 </div>

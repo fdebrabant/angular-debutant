@@ -10,4 +10,8 @@ export class ProductListItemComponent {
   imageBasePath = '/assets/images/';
 
   @Input() product: Product;
+
+  rateRange(rating: number): Array<number> {
+    return new Array(rating);
+  }
 }

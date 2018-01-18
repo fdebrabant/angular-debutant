@@ -7,8 +7,8 @@ import {Product} from '../product.model';
 })
 export class ProductListComponent {
   products: Array<Product> = [
-    {title: 'Surface Book', price: 1401, image: 'surface-book.jpg', review: 15},
-    {title: 'Macbook pro', price: 1699, image: 'macbook-pro.jpg', review: 10},
-    {title: 'Lenovo Yoga book', price: 579, image: 'lenovo-yoga-book.jpg', review: 3}
+    {title: 'Surface Book', price: 1401, image: 'surface-book.jpg', review: 15, rating: 5},
+    {title: 'Macbook pro', price: 1699, image: 'macbook-pro.jpg', review: 10, rating: 3},
+    {title: 'Lenovo Yoga book', price: 579, image: 'lenovo-yoga-book.jpg', review: 3, rating: 2}
   ];
 }
