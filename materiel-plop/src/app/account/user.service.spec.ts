@@ -2,7 +2,7 @@ import {async, fakeAsync, tick} from '@angular/core/testing';
 import {UserService} from './user.service';
 import {User} from './user.model';
 
-describe('ProductService', () => {
+describe('UserService', () => {
 
   const user = new User();
   user.gender = 'Mr';
