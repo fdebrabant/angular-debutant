@@ -14,6 +14,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.productService
       .getHighLighted()
-      .then((productList) => this.products = productList);
+      .subscribe((productList) => this.products = productList);
   }
 }

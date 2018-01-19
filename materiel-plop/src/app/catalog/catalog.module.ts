@@ -8,10 +8,12 @@ import {MenuItem, MenuService} from '../layout/menu/menu.service';
 import {ProductService} from './product.service';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {SharedModule} from '../shared/shared.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
     CatalogRoutingModule,
     ProductListModule,
     SharedModule

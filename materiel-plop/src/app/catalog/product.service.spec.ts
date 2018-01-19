@@ -1,26 +1,70 @@
-import {async, fakeAsync, tick} from '@angular/core/testing';
+import {async, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {ProductService} from './product.service';
 import {Product} from './product.model';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+
+const products = [
+  {id: 1, title: 'Surface Book', price: 1401, image: 'surface-book.jpg', review: 15, rating: 5},
+  {id: 2, title: 'Macbook pro', price: 1699, image: 'macbook-pro.jpg', review: 10, rating: 4},
+  {id: 3, title: 'Lenovo Yoga book', price: 579, image: 'lenovo-yoga-book.jpg', review: 3, rating: 3},
+];
 
 describe('ProductService', () => {
 
   let productService: ProductService;
+  let httpMock: HttpTestingController;
   beforeEach(() => {
-    productService = new ProductService();
+
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [ProductService]
+    });
+    productService = TestBed.get(ProductService);
+    httpMock = TestBed.get(HttpTestingController);
   });
 
   it('Should load highlighted products', async(() => {
+    // when
     productService
       .getHighLighted()
-      .then(products => {
-        expect(products.length).toBe(3);
+      .subscribe(productList => {
+
+        // then
+        expect(productList.length).toBe(2);
       });
+
+    const request = httpMock.expectOne('/api/product/highlighted');
+    request.flush([products[0], products[1]]);
+    httpMock.verify();
   }));
 
   it('Should load all products', fakeAsync(() => {
+    // given
     let list: Array<Product>;
-    productService.getList().then(products => list = products);
+
+    // when
+    productService.getList().then(productList => list = productList);
+    const request = httpMock.expectOne('/api/product');
+    request.flush(products);
     tick();
-    expect(list.length).toBe(6);
+
+    // then
+    expect(list.length).toBe(3);
+    httpMock.verify();
+  }));
+
+  it('Should load a product', fakeAsync(() => {
+    // given
+    let selectedProduct: Product;
+
+    // when
+    productService.get(1).then(product => selectedProduct = product);
+    const request = httpMock.expectOne('/api/product/1');
+    request.flush(products[0]);
+    tick();
+
+    // then
+    expect(selectedProduct.id).toBe(1);
+    httpMock.verify();
   }));
 });

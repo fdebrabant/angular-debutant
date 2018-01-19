@@ -1,6 +1,7 @@
-import {async, fakeAsync, tick} from '@angular/core/testing';
+import {async, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {UserService} from './user.service';
 import {User} from './user.model';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
 describe('UserService', () => {
 
@@ -9,9 +10,16 @@ describe('UserService', () => {
   user.firstName = 'John';
   user.lastName = 'Doe';
   let userService: UserService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
-    userService = new UserService();
+
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [UserService]
+    });
+    userService = TestBed.get(UserService);
+    httpMock = TestBed.get(HttpTestingController);
   });
 
   it('Should have no user logged in by default', () => {
@@ -24,9 +32,26 @@ describe('UserService', () => {
     expect(userService.isConnected()).toBe(true);
   }));
 
-  it('Should have connected user after account has been created', fakeAsync(() => {
+  it('Should create a new user', fakeAsync(() => {
+    // when
     userService.create(user);
+    const req = httpMock.expectOne('/api/user/create');
+    req.flush({});
     tick();
+
+    // then
+    expect(req.request.body).toEqual(jasmine.objectContaining(user));
+    httpMock.verify();
+  }));
+
+  it('Should have connected user after account has been created', fakeAsync(() => {
+    // when
+    userService.create(user);
+    const request = httpMock.expectOne('/api/user/create');
+    request.flush({});
+    tick();
+
+    // then
     expect(userService.isConnected()).toBe(true);
   }));
 

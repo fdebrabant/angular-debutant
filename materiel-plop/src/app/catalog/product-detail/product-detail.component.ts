@@ -1,6 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Product} from '../product.model';
+import {ProductService} from '../product.service';
 
 @Component({
   selector: 'mp-product-detail',
@@ -18,12 +19,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     review: 30
   };
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private productService: ProductService) {
   }
 
   ngOnInit() {
     this.routeParamSubscription = this.route.params.subscribe(params => {
-      // TODO retrieve product from api (id: params['id'])
+      this.productService.get(params['id'])
+        .then((product: Product) => this.product = product);
     });
   }
 
