@@ -1,4 +1,4 @@
-<h1>Mon panier</h1>
+<h1>Mon panier <small>({{productCount}}) produits</small></h1>
 <hr>
 <ng-container *ngIf="cartProducts.length > 0; then ProductList else NoProduct"></ng-container>
 <ng-template #ProductList>

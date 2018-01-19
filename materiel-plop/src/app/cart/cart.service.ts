@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../catalog/product.model';
+import {Subject} from 'rxjs/Subject';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 export interface CartProduct {
   product: Product;
@@ -10,6 +12,8 @@ export interface CartProduct {
 export class CartService {
 
   private cartProducts: Array<CartProduct> = [];
+
+  productList: Subject<CartProduct[]> = new BehaviorSubject<CartProduct[]>([]);
 
   getList(): Array<CartProduct> {
     return this.cartProducts;
@@ -22,10 +26,12 @@ export class CartService {
     } else {
       this.cartProducts.push(cartProduct);
     }
+    this.productList.next(this.cartProducts);
   }
 
   remove(cartProduct: CartProduct): void {
     this.cartProducts.splice(this.cartProducts.indexOf(cartProduct), 1);
+    this.productList.next(this.cartProducts);
   }
 
   getProductCount(): number {
@@ -44,6 +50,7 @@ export class CartService {
     const selectedProduct = this.findCartProduct(cartProduct);
     if (selectedProduct) {
       selectedProduct.count = quantity;
+      this.productList.next(this.cartProducts);
     }
   }
 
