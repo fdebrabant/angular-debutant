@@ -10,6 +10,9 @@ import {ProductService} from '../product.service';
 export class ProductDetailComponent implements OnInit, OnDestroy {
 
   private routeParamSubscription: any;
+
+  quantity = 0;
+
   product: Product = {
     id: 1,
     title: 'Surface Studio',
@@ -19,7 +22,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     review: 30
   };
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) {
+  constructor(private route: ActivatedRoute,
+              private productService: ProductService) {
   }
 
   ngOnInit() {

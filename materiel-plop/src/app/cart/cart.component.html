@@ -1,0 +1,31 @@
+<h1>Mon panier</h1>
+<hr>
+<ng-container *ngIf="cartProducts.length > 0; then ProductList else NoProduct"></ng-container>
+<ng-template #ProductList>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Produit</th>
+      <th>Quantité</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cartProduct of cartProducts">
+      <th>{{cartProduct.product.title}}</th>
+      <th>{{cartProduct.count}}</th>
+      <th>{{cartProduct.count * cartProduct.product.price | currency:'EUR':true}}</th>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <th>Total:</th>
+      <th></th>
+      <th>{{total | currency:'EUR':true}}</th>
+    </tr>
+    </tfoot>
+  </table>
+</ng-template>
+<ng-template #NoProduct>
+  Votre panier est vide
+</ng-template>

@@ -6,6 +6,7 @@ import {By} from '@angular/platform-browser';
 import {HeaderComponent} from './header.component';
 import {MenuService, MenuItem} from '../menu/menu.service';
 import {CollapseModule} from 'ngx-bootstrap';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 const menuServiceMock = {
   setItems: (items: any): void => {
@@ -24,7 +25,8 @@ describe('LayoutModule - HeaderComponent', () => {
     TestBed.configureTestingModule({
       imports: [CommonModule, RouterTestingModule, CollapseModule.forRoot()],
       declarations: [HeaderComponent],
-      providers: [{provide: MenuService, useValue: menuServiceMock}]
+      providers: [{provide: MenuService, useValue: menuServiceMock}],
+      schemas: [NO_ERRORS_SCHEMA]
     });
 
     fixture = TestBed.createComponent(HeaderComponent);

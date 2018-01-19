@@ -9,24 +9,26 @@ import {FooterComponent} from './footer/footer.component';
 import {PageNotFoundComponent} from './not-found.component';
 
 import {MenuService} from './menu/menu.service';
+import {CartHeaderEntryModule} from '../cart/cart-header-entry/cart-header-entry.module';
 
 @NgModule({
-    imports: [
-        LayoutRoutingModule,
-        CommonModule,
-        BsDropdownModule.forRoot(),
-        CollapseModule.forRoot()
-    ],
-    declarations: [
-        LayoutComponent,
-        HeaderComponent,
-        FooterComponent,
-        PageNotFoundComponent
-    ],
-    exports: [
-        LayoutComponent
-    ],
-    providers: [MenuService]
+  imports: [
+    LayoutRoutingModule,
+    CommonModule,
+    BsDropdownModule.forRoot(),
+    CollapseModule.forRoot(),
+    CartHeaderEntryModule
+  ],
+  declarations: [
+    LayoutComponent,
+    HeaderComponent,
+    FooterComponent,
+    PageNotFoundComponent
+  ],
+  exports: [
+    LayoutComponent
+  ],
+  providers: [MenuService]
 })
 export class LayoutModule {
 }

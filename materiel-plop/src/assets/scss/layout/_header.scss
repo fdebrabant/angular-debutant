@@ -15,5 +15,11 @@ mp-header {
         }
       }
     }
+
+    mp-cart-header-entry {
+      display: inline-block;
+      padding-top: 15px;
+      cursor: pointer;
+    }
   }
 }

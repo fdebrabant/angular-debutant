@@ -10,6 +10,7 @@ import {LayoutModule} from './layout/layout.module';
 import {HomeModule} from './home/home.module';
 import {CatalogModule} from './catalog/catalog.module';
 import {AccountModule} from './account/account.module';
+import { CartModule } from './cart/cart.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {AccountModule} from './account/account.module';
     HomeModule,
     CatalogModule,
     AccountModule,
+    CartModule,
     LayoutModule
   ],
   declarations: [AppComponent],
