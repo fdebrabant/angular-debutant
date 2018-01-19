@@ -3,6 +3,8 @@ import {ProductListItemComponent} from './product-list-item.component';
 import {By} from '@angular/platform-browser';
 import {Product} from '../product.model';
 import {RouterTestingModule} from '@angular/router/testing';
+import {LOCALE_ID} from '@angular/core';
+import {CurrencyPipe, TitleCasePipe} from '@angular/common';
 
 describe('ProductListItemComponent', () => {
 
@@ -21,13 +23,15 @@ describe('ProductListItemComponent', () => {
   });
 
   it('should display product title', () => {
+    const titleCasePipe = new TitleCasePipe();
     expect(fixture.debugElement.query(By.css('.caption h4 a')).nativeElement.textContent)
-      .toEqual(productSample.title);
+      .toEqual(titleCasePipe.transform(productSample.title));
   });
 
   it('should display product price', () => {
+    const currencyPipe = new CurrencyPipe(TestBed.get(LOCALE_ID));
     expect(fixture.debugElement.query(By.css('.caption h4 strong')).nativeElement.textContent)
-      .toEqual(`${productSample.price} €`);
+      .toEqual(currencyPipe.transform(productSample.price, 'EUR'));
   });
 
   it('should display product reviews number', () => {

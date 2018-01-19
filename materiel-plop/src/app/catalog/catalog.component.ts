@@ -7,7 +7,10 @@ import {ProductService} from './product.service';
   templateUrl: './catalog.component.html'
 })
 export class CatalogComponent implements OnInit {
-  public products: Array<Product>;
+
+  products: Array<Product>;
+
+  minPrice = 0;
 
   constructor(private productService: ProductService) {
   }

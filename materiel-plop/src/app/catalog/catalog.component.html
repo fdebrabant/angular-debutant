@@ -1,2 +1,13 @@
 <h1>Catalogue</h1>
-<mp-product-list [products]="products"></mp-product-list>
+<div class="row">
+  <div class="form-inline pull-right">
+    <label>Filtrer par prix</label>
+    <select (change)="minPrice = $event.currentTarget.value" class="form-control">
+      <option value="0">Tous</option>
+      <option value="1000"> à partir de 1000 €</option>
+      <option value="2000"> à partir de 2000 €</option>
+    </select>
+  </div>
+</div>
+<hr/>
+<mp-product-list [products]="products | greaterThanFilter:'price':minPrice"></mp-product-list>

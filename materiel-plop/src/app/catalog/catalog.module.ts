@@ -7,12 +7,14 @@ import {ProductListModule} from './product-list/product-list.module';
 import {MenuItem, MenuService} from '../layout/menu/menu.service';
 import {ProductService} from './product.service';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     CatalogRoutingModule,
-    ProductListModule
+    ProductListModule,
+    SharedModule
   ],
   declarations: [
     CatalogComponent,

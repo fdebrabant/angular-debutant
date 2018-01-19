@@ -2,7 +2,10 @@
   <div class="thumbnail" [routerLink]="['/catalog/product', product.id]">
     <img [src]="imageBasePath + product.image">
     <div class="caption">
-      <h4><a [routerLink]="['/catalog/product', product.id]">{{product.title}}</a><strong class="pull-right">{{product.price}} €</strong></h4>
+      <h4>
+        <a [routerLink]="['/catalog/product', product.id]">{{product.title | titlecase}}</a>
+        <strong class="pull-right">{{product.price | currency:'EUR'}}</strong>
+      </h4>
     </div>
     <div class="ratings">
       <p class="pull-right" mpHighlighter="yellow">{{product.review}} reviews</p>
