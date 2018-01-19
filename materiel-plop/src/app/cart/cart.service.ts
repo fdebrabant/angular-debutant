@@ -24,6 +24,10 @@ export class CartService {
     }
   }
 
+  remove(cartProduct: CartProduct): void {
+    this.cartProducts.splice(this.cartProducts.indexOf(cartProduct), 1);
+  }
+
   getProductCount(): number {
     return this.cartProducts.reduce((count, cartProduct: CartProduct): number => {
       return count += cartProduct.count;
@@ -34,6 +38,13 @@ export class CartService {
     return this.cartProducts.reduce((total: number, cartProduct: CartProduct): number => {
       return total += (cartProduct.product.price * cartProduct.count);
     }, 0);
+  }
+
+  updateProductQuantity(cartProduct: CartProduct, quantity: number): void {
+    const selectedProduct = this.findCartProduct(cartProduct);
+    if (selectedProduct) {
+      selectedProduct.count = quantity;
+    }
   }
 
   private findCartProduct(cartProduct: CartProduct): CartProduct {

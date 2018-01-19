@@ -2,6 +2,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Product} from '../product.model';
 import {ProductService} from '../product.service';
+import {CartService} from '../../cart/cart.service';
 
 @Component({
   selector: 'mp-product-detail',
@@ -23,7 +24,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   };
 
   constructor(private route: ActivatedRoute,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private cartService: CartService) {
   }
 
   ngOnInit() {
@@ -39,5 +41,11 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   rateRange(rating: number) {
     return new Array(rating);
+  }
+
+  addProduct() {
+    if (this.quantity > 0) {
+      this.cartService.add({count: this.quantity, product: this.product});
+    }
   }
 }

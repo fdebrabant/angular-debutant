@@ -24,8 +24,8 @@
           Aliquam dictum volutpat nisl at tempor. Nam efficitur ullamcorper arcu id scelerisque. Vestibulum efficitur pretium arcu, ac efficitur neque.
           Pellentesque eget eros ultricies, aliquet dui sed, aliquam justo. Duis dignissim neque a rutrum consectetur. Proin commodo tempor volutpat.
         </p>
-        <mp-counter></mp-counter>
-        <a class="btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> Ajouter au panier</a>
+        <mp-counter [(count)]="quantity"></mp-counter>
+        <a class="btn btn-primary" (click)="addProduct()"><i class="glyphicon glyphicon-shopping-cart"></i> Ajouter au panier</a>
       </div>
     </div>
   </div>

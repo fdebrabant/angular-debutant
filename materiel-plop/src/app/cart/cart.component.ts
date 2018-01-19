@@ -18,4 +18,15 @@ export class CartComponent implements OnInit {
     this.total = this.cartService.getTotal();
   }
 
+  updateProductQuantity(quantity: number, cartProduct: CartProduct) {
+    if (quantity === 0) {
+      this.cartService.remove(cartProduct);
+    } else {
+      this.cartService.updateProductQuantity(cartProduct, quantity);
+    }
+  }
+
+  removeProduct(cartProduct: CartProduct): void {
+    this.cartService.remove(cartProduct);
+  }
 }

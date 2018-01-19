@@ -4,24 +4,27 @@
 <ng-template #ProductList>
   <table class="table table-striped">
     <thead>
-    <tr>
-      <th>Produit</th>
-      <th>Quantité</th>
-      <th>Total</th>
-    </tr>
+      <tr>
+        <th>Produit</th>
+        <th>Quantité</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let cartProduct of cartProducts">
-      <th>{{cartProduct.product.title}}</th>
-      <th>{{cartProduct.count}}</th>
-      <th>{{cartProduct.count * cartProduct.product.price | currency:'EUR':true}}</th>
-    </tr>
+      <tr *ngFor="let cartProduct of cartProducts">
+        <th [routerLink]="['/catalog/product', cartProduct.product.id]">{{cartProduct.product.title}}</th>
+        <th><mp-counter [count]="cartProduct.count" (countChange)="updateProductQuantity($event, cartProduct)"></mp-counter></th>
+        <th>{{cartProduct.count * cartProduct.product.price | currency:'EUR'}}</th>
+        <td><a class="btn btn-danger" (click)="removeProduct(cartProduct)"><i class="glyphicon glyphicon-remove"></i></a></td>
+      </tr>
     </tbody>
     <tfoot>
     <tr>
       <th>Total:</th>
       <th></th>
       <th>{{total | currency:'EUR':true}}</th>
+      <th></th>
     </tr>
     </tfoot>
   </table>
