@@ -61,29 +61,29 @@
       <legend>Adresses de livraison {{addressNumber + 1}}</legend>
       <div class="form-group">
         <label>Rue</label>
-        <input type="text" name="street" #street="ngModel" class="form-control" [(ngModel)]="user.addressesDelivery[addressNumber].street" required>
+        <input type="text" [name]="'street_' + addressNumber" #street="ngModel" class="form-control" [(ngModel)]="addressesDelivery.street" required>
         <p class="alert alert-danger" *ngIf="street.invalid && street.touched">Ce champ est requis</p>
       </div>
       <div class="form-group">
         <label>Code postal</label>
-        <input type="text" name="zipCode" #zipCode="ngModel" class="form-control" [(ngModel)]="user.addressesDelivery[addressNumber].zipCode" required>
+        <input type="text" [name]="'zipCode_' + addressNumber" #zipCode="ngModel" class="form-control" [(ngModel)]="addressesDelivery.zipCode" required>
         <p class="alert alert-danger" *ngIf="zipCode.invalid && zipCode.touched">Ce champ est requis</p>
       </div>
       <div class="form-group">
         <label>Ville</label>
-        <input type="text" name="city" #city="ngModel" class="form-control" [(ngModel)]="user.addressesDelivery[addressNumber].city" required>
+        <input type="text" [name]="'city_' + addressNumber" #city="ngModel" class="form-control" [(ngModel)]="addressesDelivery.city" required>
         <p class="alert alert-danger" *ngIf="city.invalid && city.touched">Ce champ est requis</p>
       </div>
       <div class="form-group">
         <label>Pays</label>
-        <select name="country" #country="ngModel" class="form-control" [(ngModel)]="user.addressesDelivery[addressNumber].country">
+        <select [name]="'country_' + addressNumber" #country="ngModel" class="form-control" [(ngModel)]="addressesDelivery.country">
           <option *ngFor="let country of countryList" [value]="country.code">{{country.label}}</option>
         </select>
         <p class="alert alert-danger" *ngIf="country.invalid && country.touched">Ce champ est requis</p>
       </div>
       <label class="checkbox-inline">
-        <input type="checkbox" name="default" (click)="setDefaultDeliveryAddress(addressNumber)"
-               [(ngModel)]="user.addressesDelivery[addressNumber].isDefault" [value]="true">
+        <input type="checkbox" [name]="'default_' + addressNumber" (click)="setDefaultDeliveryAddress(addressNumber)"
+               [(ngModel)]="addressesDelivery.isDefault" [value]="true">
         Adresse par défaut ?
       </label>
       <a class="pull-right btn btn-danger" (click)="removeDeliveryAddress(addressNumber)">Supprimer</a>

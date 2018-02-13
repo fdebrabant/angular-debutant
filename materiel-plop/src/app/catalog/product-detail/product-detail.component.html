@@ -15,7 +15,7 @@
           {{product.title | titlecase}}
           <span class="pull-right"><i *ngFor="let rate of rateRange(product.rating)" class="glyphicon glyphicon-star"></i></span>
         </h2>
-        <h3><strong>{{product.price|currency:'EUR':true}}</strong></h3>
+        <h3><strong>{{product.price|currency:'EUR'}}</strong></h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempus imperdiet mi nec fermentum.
           Nunc sed mauris vitae neque efficitur luctus sed eu ex. In maximus odio elit, quis bibendum est gravida nec.
