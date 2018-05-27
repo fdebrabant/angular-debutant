@@ -21,9 +21,6 @@ import {HttpClientModule} from '@angular/common/http';
   declarations: [
     CatalogComponent,
     ProductDetailComponent
-  ],
-  providers: [
-    ProductService
   ]
 })
 export class CatalogModule {

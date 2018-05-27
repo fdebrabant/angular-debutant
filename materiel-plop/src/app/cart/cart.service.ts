@@ -8,7 +8,9 @@ export interface CartProduct {
   count: number;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CartService {
 
   private cartProducts: Array<CartProduct> = [];

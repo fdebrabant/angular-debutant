@@ -2,7 +2,9 @@ import {User} from './user.model';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
 
   private resourceUrl = '/api/user';

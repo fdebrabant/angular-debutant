@@ -6,13 +6,18 @@ import {CartService} from '../../cart/cart.service';
 
 @Component({
   selector: 'mp-product-detail',
-  templateUrl: './product-detail.component.html'
+  templateUrl: './product-detail.component.html',
+  styles: [`
+    a.btn-primary {
+        margin-left: 10px;
+    }
+  `]
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
 
   private routeParamSubscription: any;
 
-  quantity = 0;
+  quantity = 1;
 
   product: Product = {
     id: 1,

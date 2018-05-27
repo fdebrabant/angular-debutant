@@ -17,9 +17,6 @@ import {UserService} from './user.service';
   declarations: [
     AccountCreateComponent,
     AccountComponent
-  ],
-  providers: [
-    UserService
   ]
 })
 export class AccountModule {

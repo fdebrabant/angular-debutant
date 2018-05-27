@@ -15,7 +15,9 @@ export class MenuItem {
   }
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MenuService {
   items: MenuItem[] = [];
 

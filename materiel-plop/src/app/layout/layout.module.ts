@@ -27,8 +27,7 @@ import {CartHeaderEntryModule} from '../cart/cart-header-entry/cart-header-entry
   ],
   exports: [
     LayoutComponent
-  ],
-  providers: [MenuService]
+  ]
 })
 export class LayoutModule {
 }

@@ -11,7 +11,6 @@ import {SharedModule} from '../shared/shared.module';
     SharedModule,
     CartRoutingModule
   ],
-  declarations: [CartComponent],
-  providers: [CartService]
+  declarations: [CartComponent]
 })
 export class CartModule { }

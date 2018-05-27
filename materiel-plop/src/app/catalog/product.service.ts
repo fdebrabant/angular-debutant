@@ -3,7 +3,9 @@ import {Product} from './product.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ProductService {
 
   private resourceUrl = '/api/product';
