@@ -1,7 +1,8 @@
 import {TestBed, ComponentFixture} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {CommonModule} from '@angular/common';
-import {By} from '@angular/platform-browser';
+import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {HeaderComponent} from './header.component';
 import {MenuService, MenuItem} from '../menu/menu.service';
@@ -23,7 +24,7 @@ describe('LayoutModule - HeaderComponent', () => {
   beforeEach(() => {
 
     TestBed.configureTestingModule({
-      imports: [CommonModule, RouterTestingModule, CollapseModule.forRoot()],
+      imports: [CommonModule, RouterTestingModule, CollapseModule.forRoot(), BrowserAnimationsModule],
       declarations: [HeaderComponent],
       providers: [{provide: MenuService, useValue: menuServiceMock}],
       schemas: [NO_ERRORS_SCHEMA]

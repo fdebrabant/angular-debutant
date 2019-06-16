@@ -20,7 +20,7 @@ describe('ProductService', () => {
       providers: [ProductService]
     });
     productService = TestBed.get(ProductService);
-    httpMock = TestBed.get(HttpTestingController);
+    httpMock = TestBed.get<HttpTestingController>(HttpTestingController as any);
   });
 
   it('Should load highlighted products', async(() => {

@@ -19,7 +19,7 @@ describe('UserService', () => {
       providers: [UserService]
     });
     userService = TestBed.get(UserService);
-    httpMock = TestBed.get(HttpTestingController);
+    httpMock = TestBed.get<HttpTestingController>(HttpTestingController as any);
   });
 
   it('Should have no user logged in by default', () => {
