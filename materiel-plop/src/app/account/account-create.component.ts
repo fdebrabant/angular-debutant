@@ -12,7 +12,7 @@ export class AccountCreateComponent implements OnInit {
   user: User;
   genderList: Array<Gender> = GENDER_LIST;
   countryList: Array<Country> = COUNTRY_LIST;
-  @ViewChild('myForm', {static: false}) ngForm: NgForm;
+  @ViewChild('myForm') ngForm: NgForm;
 
   constructor(public router: Router, private userService: UserService) {}
 

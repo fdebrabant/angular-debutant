@@ -29,7 +29,7 @@ describe('ProductListItemComponent', () => {
   });
 
   it('should display product price', () => {
-    const currencyPipe = new CurrencyPipe(TestBed.get(LOCALE_ID));
+    const currencyPipe = new CurrencyPipe(TestBed.inject(LOCALE_ID));
     expect(fixture.debugElement.query(By.css('.caption h4 strong')).nativeElement.textContent)
       .toEqual(currencyPipe.transform(productSample.price, 'EUR'));
   });

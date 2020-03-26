@@ -1,21 +1,29 @@
-import {TestBed, ComponentFixture} from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
-import {CommonModule} from '@angular/common';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CommonModule } from '@angular/common';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {HeaderComponent} from './header.component';
-import {MenuService, MenuItem} from '../menu/menu.service';
-import {CollapseModule} from 'ngx-bootstrap';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { HeaderComponent } from './header.component';
+import { MenuItem, MenuService } from '../menu/menu.service';
+import { CollapseModule } from 'ngx-bootstrap';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-const menuServiceMock = {
-  setItems: (items: any): void => {
+class MenuServiceMock {
+  items;
+
+  setItems(items: any): void {
     this.items = items;
-  },
-  getItems: (): any[] => this.items,
-  hasSubItems: (): boolean => this.items.length > 0
-};
+  }
+
+  getItems(): any[] {
+    return this.items;
+  }
+
+  hasSubItems(): boolean {
+    return this.items.length > 0;
+  }
+}
 
 describe('LayoutModule - HeaderComponent', () => {
 
@@ -24,10 +32,10 @@ describe('LayoutModule - HeaderComponent', () => {
   beforeEach(() => {
 
     TestBed.configureTestingModule({
-      imports: [CommonModule, RouterTestingModule, CollapseModule.forRoot(), BrowserAnimationsModule],
-      declarations: [HeaderComponent],
-      providers: [{provide: MenuService, useValue: menuServiceMock}],
-      schemas: [NO_ERRORS_SCHEMA]
+      imports: [ CommonModule, RouterTestingModule, CollapseModule.forRoot(), BrowserAnimationsModule ],
+      declarations: [ HeaderComponent ],
+      providers: [ { provide: MenuService, useClass: MenuServiceMock } ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     });
 
     fixture = TestBed.createComponent(HeaderComponent);
@@ -35,7 +43,8 @@ describe('LayoutModule - HeaderComponent', () => {
 
   it('should render items in menu', () => {
     // Given
-    menuServiceMock.setItems([new MenuItem('item1', '/'), new MenuItem('item2', '/'), new MenuItem('item3', '/')]);
+    const menuService: MenuService = TestBed.inject(MenuService);
+    menuService.items = [ new MenuItem('item1', '/'), new MenuItem('item2', '/'), new MenuItem('item3', '/') ];
 
     // When
     fixture.componentInstance.ngOnInit();

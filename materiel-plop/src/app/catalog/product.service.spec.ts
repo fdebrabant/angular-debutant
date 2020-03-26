@@ -19,8 +19,8 @@ describe('ProductService', () => {
       imports: [HttpClientTestingModule],
       providers: [ProductService]
     });
-    productService = TestBed.get(ProductService);
-    httpMock = TestBed.get<HttpTestingController>(HttpTestingController as any);
+    productService = TestBed.inject(ProductService);
+    httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as any);
   });
 
   it('Should load highlighted products', async(() => {
