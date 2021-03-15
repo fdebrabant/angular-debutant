@@ -21,9 +21,7 @@ export class UserService {
         this.user = user;
         return true;
       })
-      .catch(() => {
-        return false;
-      });
+      .catch(() => false);
   }
 
   login(user: User): Promise<boolean> {

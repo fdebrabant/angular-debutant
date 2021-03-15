@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {Product} from '../catalog/product.model';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Product } from '../catalog/product.model';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 export interface CartProduct {
   product: Product;
@@ -12,9 +12,8 @@ export interface CartProduct {
 })
 export class CartService {
 
-  private cartProducts: Array<CartProduct> = [];
-
   productList: Subject<CartProduct[]> = new BehaviorSubject<CartProduct[]>([]);
+  private cartProducts: Array<CartProduct> = [];
 
   getList(): Array<CartProduct> {
     return this.cartProducts;
@@ -36,15 +35,12 @@ export class CartService {
   }
 
   getProductCount(): number {
-    return this.cartProducts.reduce((count, cartProduct: CartProduct): number => {
-      return count += cartProduct.count;
-    }, 0);
+    return this.cartProducts.reduce((count, cartProduct: CartProduct): number => count += cartProduct.count, 0);
   }
 
   getTotal(): number {
-    return this.cartProducts.reduce((total: number, cartProduct: CartProduct): number => {
-      return total += (cartProduct.product.price * cartProduct.count);
-    }, 0);
+    return this.cartProducts
+      .reduce((sum, cartProduct): number => sum += (cartProduct.product.price * cartProduct.count), 0);
   }
 
   updateProductQuantity(cartProduct: CartProduct, quantity: number): void {
@@ -56,8 +52,6 @@ export class CartService {
   }
 
   private findCartProduct(cartProduct: CartProduct): CartProduct {
-    return this.cartProducts.find((registeredCartProduct: CartProduct) => {
-      return registeredCartProduct.product.id === cartProduct.product.id;
-    });
+    return this.cartProducts.find((registeredCartProduct: CartProduct) => registeredCartProduct.product.id === cartProduct.product.id);
   }
 }

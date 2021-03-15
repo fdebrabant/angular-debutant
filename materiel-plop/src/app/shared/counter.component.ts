@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'mp-counter',
-  styles: ['input {width: 40px; text-align: center}'],
+  styles: [ 'input {width: 40px; text-align: center}' ],
   template: `
     <span class="counter">
         <button (click)="decrease()">-</button>
@@ -12,17 +12,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   `
 })
 export class CounterComponent implements OnInit {
-
   @Input() count = 0;
 
   @Output() countChange: EventEmitter<number> = new EventEmitter<number>();
 
   quantity: number;
-
-  private updateQuantity() {
-    this.quantity = this.count;
-    this.countChange.emit(this.count);
-  }
 
   ngOnInit() {
     this.quantity = this.count;
@@ -43,4 +37,8 @@ export class CounterComponent implements OnInit {
     this.countChange.emit(this.count);
   }
 
+  private updateQuantity() {
+    this.quantity = this.count;
+    this.countChange.emit(this.count);
+  }
 }

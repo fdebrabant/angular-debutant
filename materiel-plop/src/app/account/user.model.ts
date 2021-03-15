@@ -4,11 +4,11 @@ export interface Country {
 }
 
 export type Gender = 'Mr' | 'Mrs' | 'Ms';
-export const GENDER_LIST: Array<Gender> = ['Mr', 'Mrs', 'Ms'];
+export const GENDER_LIST: Array<Gender> = [ 'Mr', 'Mrs', 'Ms' ];
 export const COUNTRY_LIST: Array<Country> = [
-  {code: 'US', label: 'États-Unis'},
-  {code: 'FR', label: 'France'},
-  {code: 'GB', label: 'Royaume-Unis'}
+  { code: 'US', label: 'États-Unis' },
+  { code: 'FR', label: 'France' },
+  { code: 'GB', label: 'Royaume-Unis' }
 ];
 
 export class Address {
@@ -40,8 +40,7 @@ export class User {
   }
 
   get defaultDeliveryAddress() {
-    return this.addressesDelivery.reduce((selectedAddress: AddressDelivery, address: AddressDelivery) => {
-      return (selectedAddress === null || address.isDefault) ? address : selectedAddress;
-    }, null);
+    return this.addressesDelivery
+      .reduce((selected, address) => (selected === null || address.isDefault) ? address : selected, null);
   }
 }

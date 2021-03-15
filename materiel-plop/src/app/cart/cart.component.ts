@@ -1,20 +1,19 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CartProduct, CartService} from './cart.service';
-import {Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CartProduct, CartService } from './cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'mp-cart',
   templateUrl: './cart.component.html'
 })
 export class CartComponent implements OnInit, OnDestroy {
-
-  private cartSubscription: Subscription;
-
   cartProducts: Array<CartProduct>;
 
   total: number;
 
   productCount: number;
+
+  private cartSubscription: Subscription;
 
   constructor(private cartService: CartService) {
   }

@@ -1,20 +1,28 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
-import {NgForm} from '@angular/forms';
-import {User, GENDER_LIST, COUNTRY_LIST, Gender, AddressDelivery, Country} from './user.model';
-import {UserService} from './user.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { AddressDelivery, Country, COUNTRY_LIST, Gender, GENDER_LIST, User } from './user.model';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'mp-account-create',
   templateUrl: './account-create.component.html'
 })
 export class AccountCreateComponent implements OnInit {
-  user: User;
-  genderList: Array<Gender> = GENDER_LIST;
-  countryList: Array<Country> = COUNTRY_LIST;
   @ViewChild('myForm') ngForm: NgForm;
 
-  constructor(public router: Router, private userService: UserService) {}
+  user: User;
+
+  genderList: Array<Gender> = GENDER_LIST;
+
+  countryList: Array<Country> = COUNTRY_LIST;
+
+  constructor(public router: Router, private userService: UserService) {
+  }
+
+  get debug(): string {
+    return JSON.stringify(this.user);
+  }
 
   ngOnInit(): void {
     this.initUser();
@@ -29,7 +37,7 @@ export class AccountCreateComponent implements OnInit {
     if (this.ngForm.valid) {
       this.userService
         .create(this.user)
-        .then(() => this.router.navigate(['/account']));
+        .then(() => this.router.navigate([ '/account' ]));
     }
   }
 
@@ -47,9 +55,5 @@ export class AccountCreateComponent implements OnInit {
         address.isDefault = false;
       }
     });
-  }
-
-  get debug(): string {
-    return JSON.stringify(this.user);
   }
 }

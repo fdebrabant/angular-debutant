@@ -1,22 +1,19 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Product} from '../product.model';
-import {ProductService} from '../product.service';
-import {CartService} from '../../cart/cart.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Product } from '../product.model';
+import { ProductService } from '../product.service';
+import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'mp-product-detail',
   templateUrl: './product-detail.component.html',
-  styles: [`
+  styles: [ `
     a.btn-primary {
-        margin-left: 10px;
+      margin-left: 10px;
     }
-  `]
+  ` ]
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
-
-  private routeParamSubscription: any;
-
   quantity = 1;
 
   product: Product = {
@@ -27,6 +24,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     rating: 5,
     review: 30
   };
+
+  private routeParamSubscription: any;
 
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
@@ -50,7 +49,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   addProduct() {
     if (this.quantity > 0) {
-      this.cartService.add({count: this.quantity, product: this.product});
+      this.cartService.add({ count: this.quantity, product: this.product });
     }
   }
 }
