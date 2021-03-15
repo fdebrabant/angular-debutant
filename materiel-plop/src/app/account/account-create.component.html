@@ -86,14 +86,14 @@
                [(ngModel)]="addressesDelivery.isDefault" [value]="true">
         Adresse par défaut ?
       </label>
-      <a class="pull-right btn btn-danger" (click)="removeDeliveryAddress(addressNumber)">Supprimer</a>
+      <a class="float-right btn btn-danger" (click)="removeDeliveryAddress(addressNumber)">Supprimer</a>
     </fieldset>
     <hr />
   </div>
 
   <div class="row">
     <div class="col-sm-12">
-      <button (click)="addDeliveryAddress()" class="pull-right btn btn-success"
+      <button (click)="addDeliveryAddress()" class="float-right btn btn-success"
               [disabled]="addressesDelivery.invalid && user.addressesDelivery.length > 0">
         <i class="glyphicon glyphicon-plus"></i>Ajouter une adresse
       </button>

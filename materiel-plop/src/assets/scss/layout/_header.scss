@@ -6,19 +6,9 @@ mp-header {
         max-height: 40px;
       }
     }
-    .navbar-default {
-      .navbar-nav {
-        li {
-          a.active, a:focus, a:active {
-            background-color: $gray-lighter;
-          }
-        }
-      }
-    }
 
     mp-cart-header-entry {
       display: inline-block;
-      padding-top: 15px;
       cursor: pointer;
     }
   }

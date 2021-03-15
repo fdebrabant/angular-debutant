@@ -2,8 +2,8 @@
 // import variables first to allow override on bootstrap variables
 @import "variables";
 
-$icon-font-path: "../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
-@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 
 @import "globals";
 @import "mixins";
@@ -11,3 +11,5 @@ $icon-font-path: "../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 @import "layout/header";
 @import "layout/layout";
 @import "layout/footer";
+@import "account";
+@import "catalog";

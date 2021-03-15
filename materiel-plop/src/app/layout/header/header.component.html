@@ -1,47 +1,29 @@
 <header>
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">
-          <img src="../../../assets/images/angular.png">
+      <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-brand">
+        <a type="button" class="navbar-toggle ">
+          <img src="../../../assets/images/angular.png" alt="Angular">
         </a>
       </div>
 
-      <div class="collapse navbar-collapse" [collapse]="isCollapsed">
-        <ul class="nav navbar-nav main-menu">
+      <div class="collapse navbar-collapse" [class.show]="!isCollapsed">
+        <ul class="navbar-nav mr-auto main-menu">
 
-          <ng-container *ngFor="let item of menuItems">
-
-            <li *ngIf="!item.hasSubItems()">
-              <a [routerLink]="item.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                {{item.label}}
-              </a>
-            </li>
-
-            <li *ngIf="item.hasSubItems()" dropdown>
-
-              <a dropdownToggle href="javascript:void(0)">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu" *dropdownMenu>
-                <li *ngFor="let subItem of item.subItems">
-                  <a [routerLink]="subItem.url" routerLinkActive="active"
-                     [routerLinkActiveOptions]="{ exact: true }">{{subItem.label}}</a>
-                </li>
-              </ul>
-
-            </li>
-
-          </ng-container>
+          <li class="nav-item" *ngFor="let item of menuItems">
+            <a class="nav-link" [routerLink]="item.url" routerLinkActive="active"
+               [routerLinkActiveOptions]="{ exact: true }">
+              {{item.label}}
+            </a>
+          </li>
 
         </ul>
 
-        <ul class="nav navbar-nav  pull-right">
-          <li>
+        <ul class="nav navbar-nav float-right">
+          <li class="nav-link">
             <mp-cart-header-entry></mp-cart-header-entry>
           </li>
         </ul>

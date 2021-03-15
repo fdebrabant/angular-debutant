@@ -1,4 +1,4 @@
-import {async, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import { fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import {ProductService} from './product.service';
 import {Product} from './product.model';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
@@ -23,7 +23,7 @@ describe('ProductService', () => {
     httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as any);
   });
 
-  it('Should load highlighted products', async(() => {
+  it('Should load highlighted products', waitForAsync(() => {
     // when
     productService
       .getHighLighted()

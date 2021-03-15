@@ -4,10 +4,10 @@ import {CartService} from '../cart.service';
 
 @Component({
   selector: 'mp-cart-header-entry',
-  styles: ['.badge {background-color: #2980b9; padding: 4px 7px 2px}'],
+  styles: ['.badge {background-color: #2980b9; padding: 5px 10px}'],
   template: `
-    <a routerLink="/cart" routerLinkActive="active">
-      <i class="glyphicon glyphicon-shopping-cart"></i>
+    <a class="nav-link" routerLink="/cart" routerLinkActive="active">
+      <i class="bi bi-cart"></i>
       Panier <span class="badge">{{itemCount}}</span>
     </a>
   `

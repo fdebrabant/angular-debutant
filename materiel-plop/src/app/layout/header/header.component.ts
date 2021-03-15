@@ -8,7 +8,7 @@ import {MenuService, MenuItem} from '../menu/menu.service';
 export class HeaderComponent implements OnInit {
 
   menuItems: MenuItem[];
-  isCollapsed: boolean;
+  isCollapsed = true;
 
   constructor(private menuService: MenuService) {
   }

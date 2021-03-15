@@ -1,8 +1,9 @@
 footer {
+  background: white;
   position: fixed;
-  @include gradient-vertical($start-color: lighten($navbar-default-bg, 10%), $end-color: $navbar-default-bg);
-  border-top: 1px solid $gray-lighter;
+  border-top: 1px solid $gray-100;
   bottom: 0;
+  padding: 10px 0;
   width: 100%;
   text-align: center;
   ul.nav {

@@ -35,7 +35,7 @@ describe('ProductListItemComponent', () => {
   });
 
   it('should display product reviews number', () => {
-    expect(fixture.debugElement.query(By.css('.ratings p.pull-right')).nativeElement.textContent)
+    expect(fixture.debugElement.query(By.css('.ratings p.float-right')).nativeElement.textContent)
       .toEqual(`${productSample.review} reviews`);
   });
 
@@ -45,6 +45,6 @@ describe('ProductListItemComponent', () => {
   });
 
   it('should display right number of stars', () => {
-    expect(fixture.debugElement.queryAll(By.css('.glyphicon-star')).length).toEqual(2);
+    expect(fixture.debugElement.queryAll(By.css('.bi-star-fill')).length).toEqual(2);
   });
 });

@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HeaderComponent } from './header.component';
 import { MenuItem, MenuService } from '../menu/menu.service';
-import { CollapseModule } from 'ngx-bootstrap';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 class MenuServiceMock {
@@ -32,7 +31,7 @@ describe('LayoutModule - HeaderComponent', () => {
   beforeEach(() => {
 
     TestBed.configureTestingModule({
-      imports: [ CommonModule, RouterTestingModule, CollapseModule.forRoot(), BrowserAnimationsModule ],
+      imports: [ CommonModule, RouterTestingModule, BrowserAnimationsModule ],
       declarations: [ HeaderComponent ],
       providers: [ { provide: MenuService, useClass: MenuServiceMock } ],
       schemas: [ NO_ERRORS_SCHEMA ]

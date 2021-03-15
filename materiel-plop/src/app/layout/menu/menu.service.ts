@@ -5,14 +5,6 @@ export class MenuItem {
 
   constructor(public label: string, public url: string, public weight: number = 0) {
   }
-
-  addSubItem(subItem: MenuItem): void {
-    this.subItems.push(subItem);
-  }
-
-  hasSubItems(): boolean {
-    return this.subItems.length > 0;
-  }
 }
 
 @Injectable({

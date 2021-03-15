@@ -1,9 +1,5 @@
-mp-counter {
-  display: inline-block;
-  border: 1px solid lightgray;
-  button, input {
-    border: none;
-    line-height: 30px;
-    padding: 2px 10px;
+.form-inline {
+  select {
+    margin-left: 10px;
   }
 }

@@ -1,1 +1,16 @@
 // All global tag rules should be declared here (ex: body)
+
+h1 {
+  padding: 20px 0;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+a {
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+}

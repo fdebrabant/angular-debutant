@@ -1,15 +1,15 @@
 <div class="product">
-  <div class="thumbnail" [routerLink]="['/catalog/product', product.id]">
+  <div class="thumbnail card" [routerLink]="['/catalog/product', product.id]">
     <img [src]="imageBasePath + product.image">
-    <div class="caption">
-      <h4>
+    <div class="caption card-body">
+      <h4 class="card-title">
         <a [routerLink]="['/catalog/product', product.id]">{{product.title | titlecase}}</a>
-        <strong class="pull-right">{{product.price | currency:'EUR'}}</strong>
+        <strong class="float-right">{{product.price | currency:'EUR'}}</strong>
       </h4>
-    </div>
-    <div class="ratings">
-      <p class="pull-right" mpHighlighter="yellow">{{product.review}} reviews</p>
-      <p><span *ngFor="let rate of rateRange(product.rating)" class="glyphicon glyphicon-star"></span></p>
+      <div class="ratings card-text">
+        <p class="float-right" mpHighlighter="yellow">{{product.review}} reviews</p>
+        <p><span *ngFor="let rate of rateRange(product.rating)" class="bi bi-star-fill"></span></p>
+      </div>
     </div>
   </div>
 </div>

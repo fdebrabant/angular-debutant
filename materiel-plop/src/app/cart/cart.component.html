@@ -16,7 +16,7 @@
         <th [routerLink]="['/catalog/product', cartProduct.product.id]">{{cartProduct.product.title}}</th>
         <th><mp-counter [count]="cartProduct.count" (countChange)="updateProductQuantity($event, cartProduct)"></mp-counter></th>
         <th>{{cartProduct.count * cartProduct.product.price | currency:'EUR'}}</th>
-        <td><a class="btn btn-danger" (click)="removeProduct(cartProduct)"><i class="glyphicon glyphicon-remove"></i></a></td>
+        <td><a class="btn btn-danger" (click)="removeProduct(cartProduct)"><i class="bi bi-trash"></i></a></td>
       </tr>
     </tbody>
     <tfoot>
