@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../catalog/product.model';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface CartProduct {
   product: Product;
@@ -12,46 +13,47 @@ export interface CartProduct {
 })
 export class CartService {
 
-  productList: Subject<CartProduct[]> = new BehaviorSubject<CartProduct[]>([]);
-  private cartProducts: Array<CartProduct> = [];
+  products$: Observable<Array<CartProduct>>;
 
-  getList(): Array<CartProduct> {
-    return this.cartProducts;
+  productsCount$: Observable<number>;
+
+  total$: Observable<number>;
+
+  private cartProducts$: BehaviorSubject<CartProduct[]> = new BehaviorSubject<CartProduct[]>([]);
+
+  constructor() {
+    this.products$ = this.cartProducts$;
+    this.total$ = this.cartProducts$.pipe(
+      map(products => products.reduce((sum, cartProduct): number => sum += (cartProduct.product.price * cartProduct.count), 0))
+    );
+    this.productsCount$ = this.cartProducts$.pipe(
+      map(products => products.reduce((count, cartProduct: CartProduct): number => count += cartProduct.count, 0))
+    );
   }
 
   add(cartProduct: CartProduct) {
-    const selectedProduct = this.findCartProduct(cartProduct);
+    const cartProducts = this.cartProducts$.getValue();
+    const selectedProduct = cartProducts.find((item) => item.product.id === cartProduct.product.id);
     if (selectedProduct) {
       selectedProduct.count += cartProduct.count;
     } else {
-      this.cartProducts.push(cartProduct);
+      cartProducts.push(cartProduct);
     }
-    this.productList.next(this.cartProducts);
+    this.cartProducts$.next(cartProducts);
   }
 
   remove(cartProduct: CartProduct): void {
-    this.cartProducts.splice(this.cartProducts.indexOf(cartProduct), 1);
-    this.productList.next(this.cartProducts);
-  }
-
-  getProductCount(): number {
-    return this.cartProducts.reduce((count, cartProduct: CartProduct): number => count += cartProduct.count, 0);
-  }
-
-  getTotal(): number {
-    return this.cartProducts
-      .reduce((sum, cartProduct): number => sum += (cartProduct.product.price * cartProduct.count), 0);
+    const cartProducts = this.cartProducts$.getValue();
+    cartProducts.splice(cartProducts.indexOf(cartProduct), 1);
+    this.cartProducts$.next(cartProducts);
   }
 
   updateProductQuantity(cartProduct: CartProduct, quantity: number): void {
-    const selectedProduct = this.findCartProduct(cartProduct);
+    const cartProducts = this.cartProducts$.getValue();
+    const selectedProduct = cartProducts.find((item) => item.product.id === cartProduct.product.id);
     if (selectedProduct) {
       selectedProduct.count = quantity;
-      this.productList.next(this.cartProducts);
+      this.cartProducts$.next(cartProducts);
     }
-  }
-
-  private findCartProduct(cartProduct: CartProduct): CartProduct {
-    return this.cartProducts.find((registeredCartProduct: CartProduct) => registeredCartProduct.product.id === cartProduct.product.id);
   }
 }

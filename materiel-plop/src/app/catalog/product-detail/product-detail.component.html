@@ -6,7 +6,7 @@
 <hr>
 <div class="row">
   <div class="col-md-5 col-lg-4">
-    <img [src]="'../../assets/images/' + product.image">
+    <img [src]="'../../assets/images/' + product.image" [alt]='product.title'>
   </div>
   <div class="col-md-7 col-lg-8">
     <h2 class="media-heading">
@@ -27,7 +27,7 @@
       Proin commodo tempor volutpat.
     </p>
     <mp-counter [(count)]="quantity"></mp-counter>
-    <a class="btn btn-primary" (click)="addProduct()"><i class="glyphicon glyphicon-shopping-cart"></i> Ajouter au
+    <a class="btn btn-primary" (click)="addProduct()"><i class="bi bi-cart"></i> Ajouter au
       panier</a>
   </div>
 </div>

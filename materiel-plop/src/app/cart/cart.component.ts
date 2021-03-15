@@ -1,29 +1,25 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartProduct, CartService } from './cart.service';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'mp-cart',
   templateUrl: './cart.component.html'
 })
-export class CartComponent implements OnInit, OnDestroy {
-  cartProducts: Array<CartProduct>;
+export class CartComponent implements OnInit {
+  productList$: Observable<Array<CartProduct>>;
 
-  total: number;
+  total$: Observable<number>;
 
-  productCount: number;
-
-  private cartSubscription: Subscription;
+  productCount$: Observable<number>;
 
   constructor(private cartService: CartService) {
   }
 
   ngOnInit() {
-    this.cartSubscription = this.cartService.productList.subscribe(productList => {
-      this.cartProducts = productList;
-      this.total = this.cartService.getTotal();
-      this.productCount = this.cartService.getProductCount();
-    });
+    this.productList$ = this.cartService.products$;
+    this.total$ = this.cartService.total$;
+    this.productCount$ = this.cartService.productsCount$;
   }
 
   updateProductQuantity(quantity: number, cartProduct: CartProduct) {
@@ -36,9 +32,5 @@ export class CartComponent implements OnInit, OnDestroy {
 
   removeProduct(cartProduct: CartProduct): void {
     this.cartService.remove(cartProduct);
-  }
-
-  ngOnDestroy(): void {
-    this.cartSubscription.unsubscribe();
   }
 }

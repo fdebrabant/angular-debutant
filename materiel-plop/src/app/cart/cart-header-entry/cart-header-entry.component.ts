@@ -1,33 +1,25 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {CartService} from '../cart.service';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'mp-cart-header-entry',
-  styles: ['.badge {background-color: #2980b9; padding: 5px 10px}'],
+  styles: [ '.badge {background-color: #2980b9; padding: 5px 10px}' ],
   template: `
     <a class="nav-link" routerLink="/cart" routerLinkActive="active">
       <i class="bi bi-cart"></i>
-      Panier <span class="badge">{{itemCount}}</span>
+      Panier <span class="badge">{{itemCount$ | async}}</span>
     </a>
   `
 })
-export class CartHeaderEntryComponent implements OnInit, OnDestroy {
+export class CartHeaderEntryComponent implements OnInit {
 
-  itemCount = 0;
-
-  private cartSubscription: Subscription;
+  itemCount$: Observable<number>;
 
   constructor(private cartService: CartService) {
   }
 
   ngOnInit(): void {
-    this.cartSubscription = this.cartService.productList.subscribe(() => {
-      this.itemCount = this.cartService.getProductCount();
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.cartSubscription.unsubscribe();
+    this.itemCount$ = this.cartService.productsCount$;
   }
 }

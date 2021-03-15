@@ -1,6 +1,6 @@
-<h1>Mon panier <small>({{productCount}}) produits</small></h1>
+<h1>Mon panier <small>({{productCount$ | async}}) produits</small></h1>
 <hr>
-<ng-container *ngIf="cartProducts.length > 0; then ProductList else NoProduct"></ng-container>
+<ng-container *ngIf="(productCount$ | async) > 0; then ProductList else NoProduct"></ng-container>
 <ng-template #ProductList>
   <table class="table table-striped">
     <thead>
@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let cartProduct of cartProducts">
+      <tr *ngFor="let cartProduct of productList$ | async">
         <th [routerLink]="['/catalog/product', cartProduct.product.id]">{{cartProduct.product.title}}</th>
         <th><mp-counter [count]="cartProduct.count" (countChange)="updateProductQuantity($event, cartProduct)"></mp-counter></th>
         <th>{{cartProduct.count * cartProduct.product.price | currency:'EUR'}}</th>
@@ -23,7 +23,7 @@
     <tr>
       <th>Total:</th>
       <th></th>
-      <th>{{total | currency:'EUR':true}}</th>
+      <th>{{total$ | async | currency:'EUR':true}}</th>
       <th></th>
     </tr>
     </tfoot>
